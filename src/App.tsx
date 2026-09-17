@@ -21,6 +21,8 @@ export const App: React.FC = () => {
         <img
           src={promptBgUrl}
           alt=""
+          fetchPriority="high"
+          decoding="async"
           onError={(e) => {
             // Fallback to locally cached background if CDN is unreachable
             (e.target as HTMLImageElement).src = '/bg.webp';
