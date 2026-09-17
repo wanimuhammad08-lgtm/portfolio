@@ -36,11 +36,10 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-  <!-- Font performance: preconnect then preload woff2 -->
-  <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin />
+  <!-- Font performance: preload local woff2 font -->
   <link
     rel="preload"
-    href="https://db.onlinewebfonts.com/t/95cecf452d3208890088a5b4c19c7ecf.woff2"
+    href="/fonts/helvetica-neue-me.woff2"
     as="font"
     type="font/woff2"
     crossorigin="anonymous"
@@ -50,13 +49,11 @@
   <link rel="preload" as="image" href="/portrait-cutout.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="/bg.webp" fetchpriority="high" />
 
-
-  <!-- Inline font-face to avoid render-blocking stylesheet -->
+  <!-- Inline font-face using self-hosted local font -->
   <style>
     @font-face {
       font-family: "Helvetica Neue ME";
-      src: url("https://db.onlinewebfonts.com/t/95cecf452d3208890088a5b4c19c7ecf.woff2") format("woff2"),
-           url("https://db.onlinewebfonts.com/t/95cecf452d3208890088a5b4c19c7ecf.woff") format("woff");
+      src: url("/fonts/helvetica-neue-me.woff2") format("woff2");
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -91,14 +88,6 @@
     }
   }
   </script>
-
-  <!-- Onlinewebfonts stylesheet (non-blocking after preload) -->
-  <link href="https://db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME"
-    rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link href="https://db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME"
-      rel="stylesheet" type="text/css" />
-  </noscript>
 </head>
 
 <body class="h-full bg-black text-[#efeee9] font-hn antialiased overflow-hidden select-none">

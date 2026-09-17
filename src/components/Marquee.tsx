@@ -7,7 +7,7 @@ export const Marquee: React.FC = () => {
       style={{ animationDelay: '500ms' }}
     >
       {/* Font size in vw so crop is proportional at every window width */}
-      <div
+      <h1
         className="marquee flex w-max whitespace-nowrap font-hn leading-none text-cream font-medium tracking-tight"
         style={{ fontSize: 'clamp(80px, 22vw, 340px)' }}
       >
@@ -20,7 +20,7 @@ export const Marquee: React.FC = () => {
         <span className="inline-block pr-[5vw] flex-shrink-0" aria-hidden="true">
           &mdash;&nbsp;Muhammad Ahmad&nbsp;
         </span>
-      </div>
+      </h1>
     </div>
   );
 };
