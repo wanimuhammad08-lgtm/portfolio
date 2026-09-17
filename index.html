@@ -47,6 +47,11 @@
   <link rel="preconnect" href="https://images.higgs.ai" />
   <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
 
+  <!-- Preload critical above-the-fold images for best LCP -->
+  <link rel="preload" as="image" href="/portrait-cutout.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/bg.webp" fetchpriority="high" />
+
+
   <!-- Inline font-face to avoid render-blocking stylesheet -->
   <style>
     @font-face {
