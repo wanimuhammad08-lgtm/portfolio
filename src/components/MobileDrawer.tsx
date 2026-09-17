@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface MobileDrawerProps {
@@ -54,15 +53,18 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Close Button with Lucide X */}
+        {/* Close Button — × icon matching hamburger style */}
         <button
           onClick={onClose}
           aria-label="Close menu"
-          className={`absolute right-6 top-6 text-cream transition-all duration-500 ${
-            isOpen ? 'rotate-0 opacity-100 delay-300' : 'rotate-90 opacity-0'
+          className={`absolute right-7 top-7 flex h-11 w-11 items-center justify-center rounded-full bg-cream/[0.08] border border-cream/20 hover:bg-cream/[0.14] active:scale-95 text-cream transition-all duration-400 overflow-hidden focus:outline-none ${
+            isOpen ? 'opacity-100 scale-100 delay-200' : 'opacity-0 scale-75'
           }`}
         >
-          <X size={26} strokeWidth={1.5} />
+          <svg viewBox="0 0 18 18" fill="none" className="w-[18px] h-[18px]" aria-hidden="true">
+            <line x1="1" y1="1" x2="17" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="17" y1="1" x2="1" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
         </button>
 
         {/* Top: Site Index */}

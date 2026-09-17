@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 sm:px-10 sm:pt-8 text-cream pointer-events-auto">
+    <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-7 pt-7 sm:px-10 sm:pt-8 text-cream pointer-events-auto">
       {/* Brand / Logo */}
       <div className="flex items-center">
         <a
@@ -44,14 +44,6 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Desktop Cluster */}
       <div className="hidden sm:flex items-start gap-16 lg:gap-24">
-        {/* Year */}
-        <div
-          className="anim-fade-up text-sm font-hn select-none text-cream"
-          style={{ animationDelay: '900ms' }}
-        >
-          {portfolioData.year}
-        </div>
-
         {/* Nav Column */}
         <nav className="flex flex-col gap-0.5 text-sm font-hn">
           {navLinks.map((item, i) => (
@@ -87,30 +79,39 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Mobile Hamburger Button */}
+      {/* Mobile Hamburger Button — ☰ when closed, × when open */}
       <button
         onClick={onToggleMenu}
-        aria-label="Toggle Menu"
-        className="sm:hidden anim-fade-up relative z-50 flex h-10 w-10 items-center justify-center p-2 text-cream focus:outline-none"
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        className="sm:hidden anim-fade-up relative z-50 flex h-11 w-11 items-center justify-center rounded-full bg-cream/[0.08] border border-cream/20 hover:bg-cream/[0.14] active:scale-95 transition-all duration-300 text-cream focus:outline-none overflow-hidden"
         style={{ animationDelay: '900ms' }}
       >
-        <div className="relative flex h-4 w-6 flex-col justify-between">
-          <span
-            className={`h-[1.5px] w-full bg-cream transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              isMenuOpen ? 'translate-y-[7.25px] rotate-45' : ''
-            }`}
-          />
-          <span
-            className={`h-[1.5px] w-full bg-cream transition-opacity duration-300 ${
-              isMenuOpen ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <span
-            className={`h-[1.5px] w-full bg-cream transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              isMenuOpen ? '-translate-y-[7.25px] -rotate-45' : ''
-            }`}
-          />
-        </div>
+        {/* ☰ — shown when closed */}
+        <svg
+          viewBox="0 0 20 14"
+          fill="none"
+          className={`absolute w-5 h-[14px] transition-all duration-400 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            isMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+          }`}
+          aria-hidden="true"
+        >
+          <line x1="0" y1="1" x2="20" y2="1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="0" y1="7" x2="20" y2="7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="0" y1="13" x2="20" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+
+        {/* × — shown when open */}
+        <svg
+          viewBox="0 0 18 18"
+          fill="none"
+          className={`absolute w-[18px] h-[18px] transition-all duration-400 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            isMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+          }`}
+          aria-hidden="true"
+        >
+          <line x1="1" y1="1" x2="17" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="17" y1="1" x2="1" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
       </button>
     </header>
   );

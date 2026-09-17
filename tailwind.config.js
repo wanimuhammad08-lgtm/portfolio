@@ -14,6 +14,9 @@ export default {
         sans: ['"Helvetica Neue ME"', 'Helvetica', 'Arial', 'sans-serif'],
         serif: ['"Helvetica Neue ME"', 'Helvetica', 'Arial', 'sans-serif'],
       },
+      transitionDuration: {
+        '400': '400ms',
+      },
     },
   },
   plugins: [],

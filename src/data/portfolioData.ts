@@ -58,12 +58,12 @@ export const portfolioData: PortfolioData = {
   year: "2025",
   taglines: [
     "AI & Machine Learning Engineer",
-    "Data Science & Web Crafter",
+    "Data Scientist • ML Engineer • Full-Stack AI Developer",
     "Bengaluru • Sopore, Kashmir"
   ],
   homage: [
-    "Curated Portfolio",
-    "Muhammad Ahmad"
+    "OPEN TO OPPORTUNITIES",
+    "AI • ML • DATA SCIENCE"
   ],
   bio: "Aspiring Data Science & AI Engineer with deep knowledge of Python, SQL, exploratory data analysis, and predictive modeling. Experienced in crafting robust full-stack web applications and interactive algorithm visualizations. Passionate about turning complex real-world data into actionable, high-impact intelligent systems.",
   contact: {
