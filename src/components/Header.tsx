@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 interface HeaderProps {
   isMenuOpen: boolean;
   onToggleMenu: () => void;
-  onOpenSection: (section: 'story' | 'jobs' | 'resume' | 'message') => void;
+  onOpenSection: (section: 'story' | 'experience' | 'jobs' | 'resume' | 'message') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -14,6 +14,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const navLinks = [
     { label: 'Story', section: 'story' as const },
+    { label: 'Experience', section: 'experience' as const },
     { label: 'Projects', section: 'jobs' as const },
     { label: 'Resume', section: 'resume' as const },
     { label: 'Message', section: 'message' as const }

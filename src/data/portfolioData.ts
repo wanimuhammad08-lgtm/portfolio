@@ -5,6 +5,8 @@ export interface Project {
   description: string;
   points: string[];
   tech: string[];
+  link?: string;
+  status?: string;
 }
 
 export interface Education {
@@ -13,6 +15,26 @@ export interface Education {
   location: string;
   score: string;
   period: string;
+}
+
+export interface Experience {
+  role: string;
+  company: string;
+  type: string;
+  period: string;
+  duration?: string;
+  url?: string;
+  highlights: string[];
+}
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  issueDate: string;
+  expiryDate?: string;
+  credentialId: string;
+  url: string;
+  skills: string[];
 }
 
 export interface PortfolioData {
@@ -41,6 +63,7 @@ export interface PortfolioData {
     items: string[];
   }[];
   education: Education[];
+  experience: Experience[];
   projects: Project[];
   publication: {
     title: string;
@@ -48,7 +71,7 @@ export interface PortfolioData {
     summary: string;
     highlights: string[];
   };
-  certifications: string[];
+  certifications: Certification[];
 }
 
 export const portfolioData: PortfolioData = {
@@ -110,6 +133,22 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
+      title: "Camping Hikers — Trek & Travel Platform",
+      category: "Commercial Web Application & Production Deployment",
+      period: "2024 – Present",
+      description: "Official commercial web platform designed, developed, deployed, and continuously maintained for Camping Hikers — an established travel and alpine trekking agency based in Srinagar, Kashmir.",
+      points: [
+        "Engineered and launched the official website using React and modern CSS, hosted on Vercel with high-performance responsive architecture.",
+        "Configured custom domain routing, DNS records, SSL certificates, and fast content delivery networks.",
+        "Maintain and update the website continuously with new travel itineraries, seasonal tour packages, and dynamic features.",
+        "Optimized website performance, Core Web Vitals, mobile ergonomics, and search engine discoverability (SEO).",
+        "Manage technical operations and troubleshooting, maintaining reliable website uptime and seamless user inquiries."
+      ],
+      tech: ["React", "Vercel", "Domain & DNS", "SSL/TLS", "SEO Optimization", "Ongoing Maintenance"],
+      link: "https://www.campinghikers.com/",
+      status: "Live & Maintained"
+    },
+    {
       title: "Path Finding Visualization System",
       category: "Data Science & React",
       period: "2024",
@@ -149,6 +188,50 @@ export const portfolioData: PortfolioData = {
       tech: ["React", "Django/Python", "SQL", "Role-based Access", "Healthcare UX"]
     }
   ],
+  experience: [
+    {
+      role: "Technical Head",
+      company: "RARE CLUB (CMRIT)",
+      type: "Full-time",
+      period: "Jan 2025 – Present",
+      duration: "1 yr 9 mos",
+      highlights: [
+        "Lead technical initiatives, engineering hackathons, and software workshops for the student community.",
+        "Mentor student developers in AI/ML architectures, full-stack systems, and competitive problem-solving."
+      ]
+    },
+    {
+      role: "Web Developer",
+      company: "Camping Hikers",
+      type: "Part-time",
+      period: "2024 – Present",
+      url: "https://www.campinghikers.com/",
+      highlights: [
+        "Developed and deployed the Camping Hikers website using React and Vercel.",
+        "Configured domain, DNS, SSL, and hosting for the production website.",
+        "Maintained and updated website content and features.",
+        "Improved website performance, responsiveness, and SEO.",
+        "Managed technical issues and ensured reliable website availability."
+      ]
+    },
+    {
+      role: "Data Scientist Intern",
+      company: "Intellipaat Software Solution",
+      type: "Internship",
+      period: "Feb 2026 – Jul 2026",
+      duration: "6 mos",
+      highlights: [
+        "Developed and implemented Machine Learning models for data analysis, prediction, and business insights.",
+        "Performed data cleaning, preprocessing, and Exploratory Data Analysis (EDA) using Python and data science libraries.",
+        "Analyzed datasets to identify trends, patterns, correlations, and key performance indicators (KPIs).",
+        "Applied statistical and Machine Learning techniques to solve real-world business problems.",
+        "Created data visualizations and dashboards to communicate analytical findings effectively.",
+        "Collaborated with mentors and team members on AI, Machine Learning, and Data Science projects.",
+        "Utilized Python, Pandas, NumPy, Matplotlib, Scikit-learn, and SQL for data-driven solutions.",
+        "Presented project outcomes, insights, and data-driven recommendations based on analytical findings."
+      ]
+    }
+  ],
   publication: {
     title: "Navigating Efficiency: Evaluating Routing Algorithms for Real-Time Applications",
     status: "Research Paper — Submitted to IEEE Conference (2025)",
@@ -161,8 +244,30 @@ export const portfolioData: PortfolioData = {
     ]
   },
   certifications: [
-    "Python and Django Framework with HTML5 Stack — Udemy",
-    "Microsoft Azure Administrator Course — Udemy",
-    "Master JavaScript, HTML, and CSS with 30 Projects in 30 Days — Udemy"
+    {
+      title: "CS50's Introduction to Artificial Intelligence with Python",
+      issuer: "Harvard University",
+      issueDate: "Sep 2026",
+      credentialId: "2decbf1d-4981-4a88-a8c9-ae81634ba6bc",
+      url: "https://certificates.cs50.io/2decbf1d-4981-4a88-a8c9-ae81634ba6bc.pdf?size=letter",
+      skills: ["Artificial Intelligence (AI)", "Machine Learning", "Neural Networks", "Python"]
+    },
+    {
+      title: "Google AI Essentials Specialization",
+      issuer: "Google",
+      issueDate: "Sep 2026",
+      credentialId: "Y7NIA28TAX1G",
+      url: "https://www.coursera.org/account/accomplishments/specialization/Y7NIA28TAX1G",
+      skills: ["Artificial Intelligence (AI)", "Generative AI", "Prompt Engineering", "Large Language Models"]
+    },
+    {
+      title: "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
+      issuer: "Oracle",
+      issueDate: "Feb 2026",
+      expiryDate: "Feb 2028",
+      credentialId: "103418414OCI25FNDCFA",
+      url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=BFC4045A8EB46968155A113FF817DF412211F72BEF41A1E5D52F002A2A6AEC76",
+      skills: ["Cloud Infrastructure", "Oracle Cloud (OCI)", "Cloud Architecture", "Security & Compliance"]
+    }
   ]
 };

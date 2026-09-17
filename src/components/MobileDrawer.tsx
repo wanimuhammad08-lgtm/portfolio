@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelectSection: (section: 'story' | 'jobs' | 'resume' | 'message') => void;
+  onSelectSection: (section: 'story' | 'experience' | 'jobs' | 'resume' | 'message') => void;
 }
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
@@ -26,6 +26,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
   const navLinks = [
     { label: 'Story', section: 'story' as const },
+    { label: 'Experience', section: 'experience' as const },
     { label: 'Projects', section: 'jobs' as const },
     { label: 'Resume', section: 'resume' as const },
     { label: 'Message', section: 'message' as const }

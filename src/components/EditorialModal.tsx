@@ -1,12 +1,12 @@
 import React from 'react';
-import { X, ExternalLink, Download, Mail, Phone, MapPin, Award, BookOpen } from 'lucide-react';
+import { X, ExternalLink, Download, Mail, Phone, MapPin, Award, BookOpen, Briefcase } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface EditorialModalProps {
   isOpen: boolean;
-  activeSection: 'story' | 'jobs' | 'resume' | 'message' | null;
+  activeSection: 'story' | 'experience' | 'jobs' | 'resume' | 'message' | null;
   onClose: () => void;
-  onSwitchSection: (section: 'story' | 'jobs' | 'resume' | 'message') => void;
+  onSwitchSection: (section: 'story' | 'experience' | 'jobs' | 'resume' | 'message') => void;
 }
 
 export const EditorialModal: React.FC<EditorialModalProps> = ({
@@ -35,18 +35,24 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
             </span>
 
             {/* Quick tab switcher */}
-            <div className="hidden sm:flex items-center gap-4 text-xs tracking-wider uppercase font-hn">
-              {(['story', 'jobs', 'resume', 'message'] as const).map((tab) => (
+            <div className="hidden sm:flex items-center gap-4 text-xs tracking-wider font-hn">
+              {([
+                { id: 'story', label: 'Story' },
+                { id: 'experience', label: 'Experience' },
+                { id: 'jobs', label: 'Projects' },
+                { id: 'resume', label: 'Resume' },
+                { id: 'message', label: 'Message' }
+              ] as const).map(({ id, label }) => (
                 <button
-                  key={tab}
-                  onClick={() => onSwitchSection(tab)}
+                  key={id}
+                  onClick={() => onSwitchSection(id)}
                   className={`transition-colors duration-200 pb-0.5 border-b ${
-                    activeSection === tab
+                    activeSection === id
                       ? 'border-cream text-cream font-medium'
                       : 'border-transparent text-cream/40 hover:text-cream/80'
                   }`}
                 >
-                  {tab === 'jobs' ? 'Projects' : tab}
+                  {label}
                 </button>
               ))}
             </div>
@@ -110,7 +116,66 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
             </div>
           )}
 
-          {/* 2. JOBS / PROJECTS SECTION */}
+          {/* 2. EXPERIENCE SECTION */}
+          {activeSection === 'experience' && (
+            <div className="space-y-10">
+              <div>
+                <span className="text-xs tracking-[0.2em] uppercase text-cream/50 block mb-2">
+                  Work History & Leadership
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-light">Professional Experience</h2>
+              </div>
+
+              <div className="space-y-6">
+                {portfolioData.experience.map((exp, idx) => (
+                  <div
+                    key={idx}
+                    className="p-6 sm:p-8 border border-cream/20 bg-[#161616] space-y-4 hover:border-cream/40 transition-colors duration-300"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-cream/10 pb-4">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <Briefcase size={18} className="text-cream/70 flex-shrink-0" />
+                          <h3 className="text-xl font-medium text-cream">{exp.role}</h3>
+                        </div>
+                        <div className="text-sm text-cream/80 font-light mt-1 flex flex-wrap items-center gap-2">
+                          <span className="text-cream font-normal">{exp.company}</span>
+                          <span className="text-cream/40">&bull;</span>
+                          <span className="px-2 py-0.5 text-[11px] font-mono border border-cream/20 text-cream/70 rounded">
+                            {exp.type}
+                          </span>
+                          {exp.url && (
+                            <a
+                              href={exp.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 ml-1 underline underline-offset-2"
+                            >
+                              Live Site <ExternalLink size={10} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-xs text-cream/60 font-mono sm:text-right">
+                        <div>{exp.period}</div>
+                        {exp.duration && <div className="text-cream/40">{exp.duration}</div>}
+                      </div>
+                    </div>
+
+                    <ul className="space-y-2 text-sm text-cream/75 font-light leading-relaxed list-disc list-inside">
+                      {exp.highlights.map((h, hIdx) => (
+                        <li key={hIdx} className="marker:text-cream/40">
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 3. JOBS / PROJECTS SECTION */}
           {activeSection === 'jobs' && (
             <div className="space-y-10">
               <div>
@@ -145,13 +210,27 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
               <div className="space-y-8">
                 {portfolioData.projects.map((proj, idx) => (
                   <div key={idx} className="border-t border-cream/15 pt-6 space-y-3">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="text-xl font-medium text-cream flex items-center gap-2">
-                        {proj.title}
-                      </h3>
-                      <span className="text-xs font-mono text-cream/50">
-                        {proj.category} &bull; {proj.period}
-                      </span>
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h3 className="text-xl font-medium text-cream flex items-center gap-2">
+                          {proj.title}
+                        </h3>
+                        {proj.link && (
+                          <a
+                            href={proj.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 border border-cream/30 text-cream/90 hover:text-black hover:bg-cream text-xs font-mono uppercase tracking-wider rounded transition-all duration-200"
+                          >
+                            Live Site <ExternalLink size={12} />
+                          </a>
+                        )}
+                        {proj.status && (
+                          <span className="px-2 py-0.5 text-[10px] font-mono border border-emerald-500/30 text-emerald-400 bg-emerald-950/30 rounded">
+                            {proj.status}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
                     <p className="text-sm text-cream/80 leading-relaxed font-light">
@@ -180,7 +259,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
             </div>
           )}
 
-          {/* 3. RESUME SECTION */}
+          {/* 4. RESUME SECTION */}
           {activeSection === 'resume' && (
             <div className="space-y-10">
               <div className="flex flex-wrap items-end justify-between gap-4">
@@ -202,8 +281,49 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
                 </a>
               </div>
 
+              {/* Work Experience inside CV */}
+              <div className="space-y-4">
+                <h3 className="text-xs uppercase tracking-[0.2em] text-cream/50 border-b border-cream/15 pb-2">
+                  Professional Experience
+                </h3>
+                <div className="space-y-4">
+                  {portfolioData.experience.map((exp, idx) => (
+                    <div key={idx} className="p-4 border border-cream/10 bg-cream/[0.02] space-y-2">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-sm font-medium text-cream">{exp.role}</span>
+                          <span className="text-cream/40">&bull;</span>
+                          <span className="text-sm text-cream/80 font-light">{exp.company}</span>
+                          <span className="px-1.5 py-0.5 text-[10px] font-mono border border-cream/20 text-cream/60 rounded">
+                            {exp.type}
+                          </span>
+                          {exp.url && (
+                            <a
+                              href={exp.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 hover:text-emerald-300 ml-1 underline underline-offset-2"
+                            >
+                              Live Site <ExternalLink size={9} />
+                            </a>
+                          )}
+                        </div>
+                        <div className="text-xs text-cream/50 font-mono">
+                          {exp.period} {exp.duration ? `(${exp.duration})` : ''}
+                        </div>
+                      </div>
+                      <ul className="text-xs text-cream/70 font-light space-y-1 list-disc list-inside pt-1">
+                        {exp.highlights.map((h, hIdx) => (
+                          <li key={hIdx} className="marker:text-cream/40">{h}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Skills Matrix */}
-              <div className="space-y-6">
+              <div className="space-y-6 pt-2 border-t border-cream/15">
                 <h3 className="text-xs uppercase tracking-[0.2em] text-cream/50 border-b border-cream/15 pb-2">
                   Technical Core
                 </h3>
@@ -226,16 +346,60 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
                 </div>
               </div>
 
-              {/* Certifications */}
+              {/* Licenses & Certifications */}
               <div className="space-y-4 pt-6 border-t border-cream/15">
-                <h3 className="text-xs uppercase tracking-[0.2em] text-cream/50">
-                  Professional Certifications
-                </h3>
-                <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs uppercase tracking-[0.2em] text-cream/50">
+                    Licenses & Certifications
+                  </h3>
+                  <span className="text-xs text-cream/40 font-mono">
+                    {portfolioData.certifications.length} Verified
+                  </span>
+                </div>
+                <div className="space-y-3">
                   {portfolioData.certifications.map((cert, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-sm text-cream/80 font-light">
-                      <Award size={16} className="text-cream/60 flex-shrink-0" />
-                      <span>{cert}</span>
+                    <div
+                      key={idx}
+                      className="p-4 sm:p-5 border border-cream/15 bg-[#161616] hover:border-cream/35 transition-all duration-200 flex flex-col sm:flex-row sm:items-start justify-between gap-4"
+                    >
+                      <div className="space-y-2 flex-1">
+                        <div className="flex items-start gap-3">
+                          <Award size={18} className="text-cream/70 mt-1 flex-shrink-0" />
+                          <div>
+                            <h4 className="text-sm sm:text-base font-medium text-cream">{cert.title}</h4>
+                            <div className="text-xs text-cream/70 font-light mt-0.5">
+                              {cert.issuer} &bull; Issued {cert.issueDate}
+                              {cert.expiryDate ? ` &bull; Expires ${cert.expiryDate}` : ''}
+                            </div>
+                            <div className="text-[11px] font-mono text-cream/50 mt-1">
+                              Credential ID: {cert.credentialId}
+                            </div>
+                          </div>
+                        </div>
+
+                        {cert.skills && cert.skills.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 pt-1.5 sm:pl-7">
+                            <span className="text-[11px] text-cream/50 self-center mr-1">Skills:</span>
+                            {cert.skills.map((s, sIdx) => (
+                              <span
+                                key={sIdx}
+                                className="px-2 py-0.5 text-[11px] font-mono bg-cream/10 text-cream/80 rounded"
+                              >
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <a
+                        href={cert.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-cream/30 text-cream/85 hover:text-cream hover:border-cream hover:bg-cream/10 text-xs font-mono uppercase tracking-wider rounded transition-all duration-200 self-start flex-shrink-0"
+                      >
+                        Show credential <ExternalLink size={12} />
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -256,12 +420,32 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
                     Open in new tab <ExternalLink size={12} />
                   </a>
                 </div>
-                <div className="w-full h-96 border border-cream/20 bg-black overflow-hidden">
-                  <iframe
-                    src="/resume.pdf#toolbar=0"
-                    title="Resume PDF"
+                <div className="w-full h-96 sm:h-[480px] border border-cream/20 bg-black overflow-hidden relative">
+                  <object
+                    data="/resume.pdf#toolbar=0&navpanes=0"
+                    type="application/pdf"
                     className="w-full h-full"
-                  />
+                  >
+                    <iframe
+                      src="/resume.pdf#toolbar=0"
+                      title="Resume PDF"
+                      className="w-full h-full border-0"
+                    >
+                      <div className="flex flex-col items-center justify-center h-full p-6 text-center space-y-3 bg-cream/5">
+                        <p className="text-sm text-cream/70">
+                          Inline PDF preview is not supported on this browser or device.
+                        </p>
+                        <a
+                          href="/resume.pdf"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 border border-cream/40 text-xs uppercase tracking-wider text-cream hover:bg-cream hover:text-black transition-colors"
+                        >
+                          <ExternalLink size={14} /> Open Resume PDF
+                        </a>
+                      </div>
+                    </iframe>
+                  </object>
                 </div>
               </div>
             </div>

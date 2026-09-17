@@ -9,7 +9,7 @@ import { EditorialModal } from './components/EditorialModal';
 
 export const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<'story' | 'jobs' | 'resume' | 'message' | null>(null);
+  const [activeSection, setActiveSection] = useState<'story' | 'experience' | 'jobs' | 'resume' | 'message' | null>(null);
 
   return (
     <main className="relative h-[100dvh] w-full overflow-hidden bg-black text-cream selection:bg-cream selection:text-black">
