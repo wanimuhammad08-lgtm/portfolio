@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wmuhammad.vercel.app/sitemap.xml
+Sitemap: https://www.muhammadd.me/sitemap.xml
