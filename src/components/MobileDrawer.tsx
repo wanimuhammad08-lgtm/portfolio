@@ -77,7 +77,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             Site Index
           </span>
 
-          <nav className="mt-8 flex flex-col gap-6 font-hn">
+          <nav aria-label="Mobile Navigation" className="mt-8 flex flex-col gap-6 font-hn">
             {navLinks.map((link, idx) => (
               <a
                 key={link.label}

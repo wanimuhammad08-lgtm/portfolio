@@ -30,11 +30,12 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Brand / Logo */}
       <div className="flex items-center">
         <a
-          href="#"
+          href="#story"
           onClick={(e) => {
             e.preventDefault();
             onOpenSection('story');
           }}
+          aria-label="Muhammad Ahmad - Home"
           className="anim-fade-up font-hn text-lg tracking-wide hover:opacity-70 transition-opacity duration-300"
           style={{ animationDelay: '800ms' }}
         >
@@ -45,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Desktop Cluster */}
       <div className="hidden sm:flex items-start gap-16 lg:gap-24">
         {/* Nav Column */}
-        <nav className="flex flex-col gap-0.5 text-sm font-hn">
+        <nav aria-label="Desktop Navigation" className="flex flex-col gap-0.5 text-sm font-hn">
           {navLinks.map((item, i) => (
             <a
               key={item.label}

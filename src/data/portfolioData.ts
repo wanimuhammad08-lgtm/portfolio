@@ -58,7 +58,7 @@ export const portfolioData: PortfolioData = {
   year: "2025",
   taglines: [
     "AI & Machine Learning Engineer",
-    "Data Scientist • ML Engineer • Full-Stack AI Developer",
+    "Data Scientist • Full-Stack AI Developer",
     "Bengaluru • Sopore, Kashmir"
   ],
   homage: [
