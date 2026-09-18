@@ -76,13 +76,13 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   name: "Muhammad Ahmad",
-  shortName: "Muhammad",
+  shortName: "Muhammad Ahmad",
   emDashName: "Muhammad — Ahmad",
   year: "2025",
   taglines: [
     "AI & Machine Learning Engineer",
     "Data Scientist • Full-Stack AI Developer",
-    "Bengaluru, Karnataka | Sopore, Jammu & Kashmir"
+    "Bengaluru, Karnataka | Sopore, J&K"
   ],
   homage: [
     "OPEN TO OPPORTUNITIES",

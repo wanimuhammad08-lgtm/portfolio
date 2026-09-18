@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
             onOpenSection('story');
           }}
           aria-label="Muhammad Ahmad - Home"
-          className="anim-fade-up font-hn text-lg tracking-wide hover:opacity-70 transition-opacity duration-300"
+          className="anim-fade-up font-hn text-lg tracking-wide hover:opacity-70 transition-opacity duration-300 whitespace-nowrap"
           style={{ animationDelay: '800ms' }}
         >
           {portfolioData.shortName}
