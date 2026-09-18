@@ -82,7 +82,7 @@ export const portfolioData: PortfolioData = {
   taglines: [
     "AI & Machine Learning Engineer",
     "Data Scientist • Full-Stack AI Developer",
-    "Bengaluru • Sopore, Kashmir"
+    "Bengaluru, Karnataka | Sopore, Jammu & Kashmir"
   ],
   homage: [
     "OPEN TO OPPORTUNITIES",
@@ -94,7 +94,7 @@ export const portfolioData: PortfolioData = {
     secondaryEmail: "muhammad.aiml24le@cmrit.ac.in",
     phone: "+91 9541618792",
     location: "Bengaluru, Karnataka, India",
-    homeTown: "Sopore, Baramulla, Kashmir",
+    homeTown: "Sopore, Jammu & Kashmir",
     github: "https://github.com/wanimuhammad08-lgtm",
     githubHandle: "wanimuhammad08-lgtm",
     linkedin: "https://www.linkedin.com/in/muhammad-ahmad-3188952aa",
