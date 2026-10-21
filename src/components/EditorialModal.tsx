@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, ExternalLink, Download, Mail, Phone, MapPin, Award, BookOpen, Briefcase } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { portfolioData, computeDuration, formatPeriod } from '../data/portfolioData';
 
 interface EditorialModalProps {
   isOpen: boolean;
@@ -157,8 +157,8 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
                         </div>
                       </div>
                       <div className="text-xs text-cream/60 font-mono sm:text-right">
-                        <div>{exp.period}</div>
-                        {exp.duration && <div className="text-cream/40">{exp.duration}</div>}
+                        <div>{formatPeriod(exp.startDate, exp.endDate)}</div>
+                        <div className="text-cream/40">{computeDuration(exp.startDate, exp.endDate)}</div>
                       </div>
                     </div>
 
@@ -309,7 +309,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({
                           )}
                         </div>
                         <div className="text-xs text-cream/50 font-mono">
-                          {exp.period} {exp.duration ? `(${exp.duration})` : ''}
+                          {formatPeriod(exp.startDate, exp.endDate)} ({computeDuration(exp.startDate, exp.endDate)})
                         </div>
                       </div>
                       <ul className="text-xs text-cream/70 font-light space-y-1 list-disc list-inside pt-1">

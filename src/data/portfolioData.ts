@@ -1,3 +1,26 @@
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function parseMonthYear(str: string): Date {
+  const [mon, year] = str.split(' ');
+  return new Date(parseInt(year), MONTH_NAMES.indexOf(mon));
+}
+
+export function computeDuration(startStr: string, endStr?: string): string {
+  const start = parseMonthYear(startStr);
+  const end = endStr ? parseMonthYear(endStr) : new Date();
+  let months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+  if (months < 0) months = 0;
+  const yrs = Math.floor(months / 12);
+  const mos = months % 12;
+  if (yrs > 0 && mos > 0) return `${yrs} yr ${mos} mos`;
+  if (yrs > 0) return `${yrs} yr`;
+  return `${mos} mos`;
+}
+
+export function formatPeriod(startStr: string, endStr?: string): string {
+  return endStr ? `${startStr} – ${endStr}` : `${startStr} – Present`;
+}
+
 export interface Project {
   title: string;
   category: string;
@@ -21,8 +44,8 @@ export interface Experience {
   role: string;
   company: string;
   type: string;
-  period: string;
-  duration?: string;
+  startDate: string;
+  endDate?: string;
   url?: string;
   highlights: string[];
 }
@@ -78,7 +101,7 @@ export const portfolioData: PortfolioData = {
   name: "Muhammad Ahmad",
   shortName: "Muhammad Ahmad",
   emDashName: "Muhammad — Ahmad",
-  year: "2025",
+  year: new Date().getFullYear().toString(),
   taglines: [
     "AI & Machine Learning Engineer",
     "Data Scientist • Full-Stack AI Developer",
@@ -193,8 +216,7 @@ export const portfolioData: PortfolioData = {
       role: "Technical Head",
       company: "RARE CLUB (CMRIT)",
       type: "Full-time",
-      period: "Jan 2025 – Present",
-      duration: "1 yr 9 mos",
+      startDate: "Jan 2025",
       highlights: [
         "Lead technical initiatives, engineering hackathons, and software workshops for the student community.",
         "Mentor student developers in AI/ML architectures, full-stack systems, and competitive problem-solving."
@@ -204,7 +226,7 @@ export const portfolioData: PortfolioData = {
       role: "Web Developer",
       company: "Camping Hikers",
       type: "Part-time",
-      period: "2024 – Present",
+      startDate: "Jan 2024",
       url: "https://www.campinghikers.com/",
       highlights: [
         "Developed and deployed the Camping Hikers website using React and Vercel.",
@@ -218,8 +240,8 @@ export const portfolioData: PortfolioData = {
       role: "Data Scientist Intern",
       company: "Intellipaat Software Solution",
       type: "Internship",
-      period: "Feb 2026 – Jul 2026",
-      duration: "6 mos",
+      startDate: "Mar 2026",
+      endDate: "Aug 2026",
       highlights: [
         "Developed and implemented Machine Learning models for data analysis, prediction, and business insights.",
         "Performed data cleaning, preprocessing, and Exploratory Data Analysis (EDA) using Python and data science libraries.",
